@@ -29,12 +29,12 @@ class Task {
 }
 
 class TaskList {
-  consturctor(taskArray) {
+  constructor(taskArray) {
     this.tasks = taskArray;
   }
 
   addTask(descrString) {
-    let newTask = new Task(descrString, false);
+    let newTask = new Task(descrString);
     this.tasks.push(newTask);
   }
 
@@ -55,14 +55,13 @@ class NewTaskForm {
 
   render() {
     let formElem = document.createElement("form");
+    
     let inputElem = document.createElement("input");
-
     inputElem.classList.add("form-control", "mb-3");
-    inputElem.setAttribute("placeholder", "What else do you have to do");
+    inputElem.setAttribute("placeholder", "What else do you have to do?");
     formElem.appendChild(inputElem);
 
     let buttonElem = document.createElement("button");
-
     buttonElem.classList.add("btn", "btn-primary");
     buttonElem.textContent = "Add task to list";
     formElem.appendChild(buttonElem);
@@ -70,7 +69,7 @@ class NewTaskForm {
     buttonElem.addEventListener("click", (event) => {
       event.preventDefault();
       let inputValue = inputElem.value;
-      let whatToDo = this.submitCallback();
+      let whatToDo = this.submitCallback;
       whatToDo(inputValue);
     });
 
@@ -100,7 +99,7 @@ class App {
 
 let taskListObj = new TaskList([
   new Task("Make some classes", true),
-  new Task("Arrow some functions", false),
+  new Task("Arrow some functions", false)
 ]);
 let appElem = document.querySelector("#app");
 let appObj = new App(appElem, taskListObj);
